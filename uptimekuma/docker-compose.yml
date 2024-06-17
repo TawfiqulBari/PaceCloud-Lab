@@ -1,0 +1,26 @@
+
+services:
+  uptimekuma:
+    image: docker.io/louislam/uptime-kuma:1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.uptime-kuma.rule=Host(`uptime-kuma.tawfiqulbari.work`)"
+      - "traefik.http.routers.uptime-kuma.entrypoints=https"
+      - "traefik.http.routers.uptime-kuma.tls=true"
+      - "traefik.http.services.uptime-kuma.loadbalancer.server.port=3001"
+    container_name: uptimekuma
+    ports:
+      - 3001:3001
+    networks:
+      - proxy
+    volumes:
+      - uptime-kuma:/app/data
+    restart: unless-stopped
+
+volumes:
+  uptime-kuma:
+    external: true
+
+networks:
+  proxy:
+    external: true

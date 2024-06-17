@@ -1,0 +1,41 @@
+---
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    restart: unless-stopped
+    networks:
+      - proxy
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.openwebui.rule=Host(`open-webui.tawfiqulbari.work`)"
+      - "traefik.http.routers.openwebui.entrypoints=https"
+      - "traefik.http.routers.openwebui.tls=true"
+      - "traefik.http.services.openwebui.loadbalancer.server.port=8080"
+    container_name: open-webui
+    ports:
+      - "8282:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - open-webui:/app/backend/data
+    networks:
+      - proxy
+    restart: unless-stopped
+
+volumes:
+  open-webui:
+    external: true
+  ollama:
+    external: true
+networks:
+  proxy:
+    external: true  

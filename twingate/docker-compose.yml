@@ -1,0 +1,13 @@
+services:
+  twingate-connector:
+    container_name: twingate
+    restart: always
+    image: twingate/connector:latest
+    environment:
+      - TWINGATE_NETWORK=tawfiqulbari
+      - TWINGATE_ACCESS_TOKEN=eyJhbGciOiJFUzI1NiIsImtpZCI6ImpTY3VuOXk1WDNzb3hwYnRrYXRqMlR2a3drZEJOU2tRZXl1V2FBWVB3X3ciLCJ0eXAiOiJEQVQifQ.eyJudCI6IkFOIiwiYWlkIjoiMjk0MDY2IiwiZGlkIjoiMTQ2ODg5OSIsImp0aSI6IjhkNzQ4MWEyLWFjMGYtNGY2ZC1hN2VkLTU3NzNmNjA0NjNjNiIsImlzcyI6InR3aW5nYXRlIiwiYXVkIjoidGF3ZmlxdWxiYXJpIiwiZXhwIjoxNzE4MjIxNTE3LCJpYXQiOjE3MTgyMTc5MTcsInZlciI6IjQiLCJ0aWQiOiI4OTI3MiIsInJudyI6MTcxODIxODI1Niwicm5ldGlkIjoiMTE2MDIxIn0.KcLyuk-Zy1fPq3Ff6oGwMkEDyAnvgRRrnoxmU4m9NWeEo7zAfAA4aQ8eFqgODd4DhOi_eP8xQ_93-cjMb0Xkaw
+      - TWINGATE_REFRESH_TOKEN=1qYjTKC9Ndubs0RFA6wMHJjAfADy15RKuQlmFt6Ee3jAGCzgSiGugkymcVs1rahTdoP9oIt3SyLC0ukXjKz79jz6LNCJEO1ny0LFIwfT6WIfeVPLNuVklvyzNGNeA28N1WcaTw
+      - TWINGATE_LOG_ANALYTICS=v2
+      - TWINGATE_LOG_LEVEL=3
+    sysctls:
+      net.ipv4.ping_group_range: "0 2147483647"

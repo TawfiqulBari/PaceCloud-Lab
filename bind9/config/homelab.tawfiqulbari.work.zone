@@ -1,0 +1,13 @@
+$TTL 2d    ; default TTL for zone
+$ORIGIN homelab.tawfiqulbari.work. ; base domain-name
+@		IN      SOA   ns.homelab.tawfiqulbari.work. info.tawfiqulbari.work. (
+                                2003080800 ; serial number
+                                12h        ; refresh
+                                15m        ; update retry
+                                3w         ; expiry
+                                2h         ; minimum
+                                )
+		IN      NS      ns.homelab.tawfiqulbari.work.
+ns		IN	A	192.168.0.54
+homelab		IN	A	192.168.0.54
+*.homelab	IN	A	192.168.0.54
