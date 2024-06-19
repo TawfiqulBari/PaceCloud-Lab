@@ -9,6 +9,8 @@ services:
     image: postgres
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - kestra_default
     environment:
       POSTGRES_DB: kestra
       POSTGRES_USER: kestra
@@ -37,6 +39,7 @@ services:
       - /tmp/kestra-wd:/tmp/kestra-wd
     networks:
       - proxy
+      - kestra_default
     environment:
       KESTRA_CONFIGURATION: |
         datasources:
@@ -44,7 +47,7 @@ services:
             url: jdbc:postgresql://postgres:5432/kestra
             driverClassName: org.postgresql.Driver
             username: kestra
-            password: k3str4
+            password: kestraChangeMeN0T
         kestra:
           server:
             basic-auth:
@@ -63,12 +66,14 @@ services:
             tmp-dir:
               path: /tmp/kestra-wd/tmp
           url: https://kestra.tawfiqulbari.work
-    ports:
-      - "8080:8080"
-      - "8081:8081"
+  #  ports:
+  #    - "8080:8080"
+  #    - "8081:8081"
     depends_on:
       postgres:
         condition: service_started
 networks:
   proxy:
     external: true 
+  kestra_default:
+    external: true
