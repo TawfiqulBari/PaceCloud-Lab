@@ -62,7 +62,7 @@ services:
           tasks:
             tmp-dir:
               path: /tmp/kestra-wd/tmp
-          url: https://kestra.tawwfiqulbari.work
+          url: https://kestra.tawfiqulbari.work
     ports:
       - "8080:8080"
       - "8081:8081"
